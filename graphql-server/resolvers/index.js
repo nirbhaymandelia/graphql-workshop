@@ -1,25 +1,25 @@
-const { registerUser, fetchUsers, login } = require("../users");
-const { registerCustomer, fetchCustomers } = require("../customers");
+const { registerCustomer, fetchCustomers, login } = require("../customers");
+const { addProduct, fetchProductById, fetchProducts } = require('../product')
+
 const resolvers = {
   Query: {
-    users: (parent, args, context) => {
-      const { me } = context;
-      console.log("---me----", me);
-
-      const users = fetchUsers();
-      return users;
-    },
-
     customers: (parent, args, context) => {
       const customers = fetchCustomers();
       return customers;
     },
+    /* fetchProductById: (parent, args, context) => {
+      const { me } = context;
+      console.log('---me----', me, args);
+
+      const product = fetchProductById(args.product.id);
+      return product;
+    }, */
+    products: () => {
+      const products = fetchProducts();
+      return products;
+    }
   },
   Mutation: {
-    registerUser: async (parent, args) => {
-      const user = await registerUser(args.user);
-      return user;
-    },
     login: async (parent, args) => {
       const token = await login(args.user);
       return token;
@@ -27,6 +27,10 @@ const resolvers = {
     registerCustomer: async (parent, args) => {
       const customer = await registerCustomer(args.customer);
       return customer;
+    },
+    addProduct: async (parent, args) => {
+      const user = await addProduct(args.product);
+      return user;
     },
   },
 };

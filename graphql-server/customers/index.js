@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const instance = axios.create({
-  baseURL: "http://localhost:3030/",
+  baseURL: "http://localhost:3010/",
 });
 
 const registerCustomer = async (customer) => {
@@ -29,4 +29,18 @@ const fetchCustomers = async () => {
   }
 };
 
-module.exports = { registerCustomer, fetchCustomers };
+const login = async (user) => {
+  try {
+    const { data } = await instance.post('/login', {
+      email: user.email,
+      password: user.password
+    })
+
+    return data;
+  } catch (e) {
+    console.error('---error login users--', e);
+    throw e;
+  }
+}
+
+module.exports = { registerCustomer, fetchCustomers, login };
