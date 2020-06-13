@@ -21,7 +21,7 @@ const resolvers = {
   },
   Mutation: {
     login: async (parent, args) => {
-      const token = await login(args.user);
+      const token = await login(args.customer);
       return token;
     },
     registerCustomer: async (parent, args) => {
