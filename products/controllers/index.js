@@ -1,4 +1,4 @@
-const Product = require('../models');
+const Product = require('../models/product');
 
 const fetchAllProduct = async (req,res) => {
     try {
@@ -10,24 +10,13 @@ const fetchAllProduct = async (req,res) => {
     }
 }
 
-const fetchProductsById = async (req,res) => {
+const fetchProductById = async (req,res) => {
     const id = req.params.id;
     try {
         const product = await Product.findOne({_id: id});
         res.status(200).send(product);
     } catch (e) {
         console.error('---Error fetching product ----',id, e);
-        res.status(500).send({message: 'Error fetching specific product informations'});
-    }
-}
-
-const fetchProductsByCategory = async (req,res) => {
-    const id = req.params.catId;
-    try {
-        const products = await Product.findByCat({_id: id});
-        res.status(200).send(products);
-    } catch (e) {
-        console.error('---Error fetching product for category ----',id, e);
         res.status(500).send({message: 'Error fetching specific product informations'});
     }
 }
@@ -49,4 +38,4 @@ const addProduct = async (req, res) => {
     }
 }
 
-module.exports = {fetchAllProduct, fetchProductsById, fetchProductsByCategory, addProduct};
+module.exports = {fetchAllProduct, fetchProductsById, addProduct};
