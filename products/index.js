@@ -3,6 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const productRoutes = require('./routes');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const port = process.env.PRODUCT_SERVICE_PORT || 3000;
 const url = process.env.PRODUCT_DB_URL || 'mongodb://localhost:27017/workshop-products-db';
@@ -15,6 +16,8 @@ mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true}, (err)=>
 })
 const app = express();
 app.use(cors());
+
+app.use(bodyParser());
 
 app.use(express.json());
 
