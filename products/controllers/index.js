@@ -38,4 +38,4 @@ const addProduct = async (req, res) => {
     }
 }
 
-module.exports = {fetchAllProduct, fetchProductsById, addProduct};
+module.exports = {fetchAllProduct, fetchProductById, addProduct};
