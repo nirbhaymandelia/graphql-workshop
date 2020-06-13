@@ -4,6 +4,7 @@ const typeDefs = gql`
   type Query {
     users: [User]
     customers: [Customer]
+    product: [Product]
   }
 
   type Mutation {
@@ -43,6 +44,13 @@ const typeDefs = gql`
     name: String
     email: String
     address: String
+  }
+
+  type Product {
+    id: ID!
+    name: String
+    category: String
+    price: Float!
   }
 `;
 
